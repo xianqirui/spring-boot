@@ -1,7 +1,18 @@
 #SpringBoot项目是一个标准的Maven项目，它的配置文件需要放在src/main/resources/下，
 #其文件名必须为application，其存在两种文件形式，分别是properties和yaml（或者yml）文件。
 #冒号后面有空格
+#设置Freemarker视图设置
 spring:
   profiles:
     #使用不同环境
     active: dev
+  freemarker:
+    #可以改
+    template-loader-path:classpath: /tempates/
+    #后缀
+    suffix: .ftl
+    #设置编码格式
+    charset: utf-8
+
+
+#设置Freemarker视图设置
