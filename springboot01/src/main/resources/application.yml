@@ -18,3 +18,7 @@ spring:
   thymeleaf:
     prefix: classpath:/thyemleaf/
     cache: false
+
+  #自定义资源目录
+  resources:
+    static-locations: classpath:/public/,classpath:/static/,classpath:/os/

@@ -11,3 +11,6 @@ SpringBoot项目是一个标准的Maven项目，它的配置文件需要放在sr
 两个文件二选一
 
 默认视图在resoures目录下创建templates目录存放视图,路径可以自己该
+============================
+静态资源须在resources目录下新建public（默认目录）,static...
+{"classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/"};
