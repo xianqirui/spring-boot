@@ -6,11 +6,11 @@ spring:
   profiles:
     #使用不同环境
     active: dev
-  freemarker:
+  thymeleaf:
     #可以改
     template-loader-path:classpath: /tempates/
     #后缀
-    suffix: .ftl
+    suffix: .html
     #设置编码格式
     charset: utf-8
 
