@@ -1,0 +1,5 @@
+#环境设置
+server:
+  port: 8383
+  servlet:
+    context-path: /test

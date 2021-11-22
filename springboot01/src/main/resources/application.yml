@@ -1,9 +1,7 @@
 #SpringBoot项目是一个标准的Maven项目，它的配置文件需要放在src/main/resources/下，
 #其文件名必须为application，其存在两种文件形式，分别是properties和yaml（或者yml）文件。
 #冒号后面有空格
-server:
-  #设置端口:8989
-  #设置路径
-  servlet:
-    context-path: /sp
-  port: 8989
+spring:
+  profiles:
+    #使用不同环境
+    active: dev

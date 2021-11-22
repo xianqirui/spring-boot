@@ -1,0 +1,6 @@
+#环境设置
+server:
+  port: 8181
+
+  servlet:
+    context-path: /dev
