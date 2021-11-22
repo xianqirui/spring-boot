@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HelloController {
@@ -17,7 +16,7 @@ public class HelloController {
 
     @RequestMapping("index")
     public String index(HttpServletRequest request){
-        request.setAttribute("mgs","haohaohao");
+        request.setAttribute("ggg","haohaohao");
         return "index";
     }
 }
