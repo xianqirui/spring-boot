@@ -1,0 +1,1 @@
+Banner图标打开，在resouces目录下创建，banner.txt文件，添加类容
