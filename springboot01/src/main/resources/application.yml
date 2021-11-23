@@ -10,7 +10,7 @@ spring:
     #可以改
     template-loader-path:classpath: /tempates/
     #后缀
-    suffix: .html
+    suffix: .ftl
     #设置编码格式
     charset: utf-8
     prefix:
