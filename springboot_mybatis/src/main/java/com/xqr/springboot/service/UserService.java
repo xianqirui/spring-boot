@@ -57,8 +57,12 @@ public class UserService {
         AssertUtil.isTrue(temp!=null&&!user.getId().equals(temp.getId()),"用户已存在，请重试");
         //int num=userMapper.addUser(user);
         AssertUtil.isTrue(userMapper.updateUser(user)<1,"修改用户失败");
-
-
     }
 
+    public void delectUser(Integer id){
+        //判断非空
+        AssertUtil.isTrue(id==null||userMapper.selectbyid(id)==null,"删除记录不存在");
+        //执行删除
+        AssertUtil.isTrue(userMapper.delectUser(id)<1,"删除失败");
+    }
 }

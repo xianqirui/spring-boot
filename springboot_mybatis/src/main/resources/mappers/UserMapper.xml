@@ -24,4 +24,8 @@
     <update id="updateUser">
         update tb_user set userName=#{userName},userpwd=#{userPwd} where id=#{id}
     </update>
+
+    <delete id="delectUser">
+        delete from tb_user where id=#{id}
+    </delete>
 </mapper>
