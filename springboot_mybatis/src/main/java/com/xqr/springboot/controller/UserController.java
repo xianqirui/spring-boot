@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("user/add")
     public Map<String,Object> addUser(@RequestBody User user){
     Map<String,Object> map=new HashMap<>();
-    try {
+    /*try {
         //调用service方法
         userService.addUser(user);
         map.put("code",200);
@@ -43,13 +43,16 @@ public class UserController {
         map.put("code",500);
         map.put("msg","用户添加失败");
         e.printStackTrace();
-    }
+    }*/
+        userService.addUser(user);
+        map.put("code",200);
+        map.put("msg","添加用户成功");
       return map;
     }
     @PutMapping("user/update")
     public Map<String,Object> updateuser(@RequestBody User user){
         Map<String,Object> map=new HashMap<>();
-        try {
+        /*try {
             //调用service方法
             userService.updateUser(user);
             map.put("code",200);
@@ -62,14 +65,17 @@ public class UserController {
             map.put("code",500);
             map.put("msg","用户修改失败");
             e.printStackTrace();
-        }
+        }*/
+        userService.updateUser(user);
+        map.put("code",200);
+        map.put("msg","修改用户成功");
         return map;
     }
     //删除用户
     @DeleteMapping("user/delect/{id}")
     public Map<String,Object> delectuser(@PathVariable Integer id){
         Map<String,Object> map=new HashMap<>();
-        try {
+        /*try {
             //调用service方法
             userService.delectUser(id);
             map.put("code",200);
@@ -82,7 +88,10 @@ public class UserController {
             map.put("code",500);
             map.put("msg","用户删除失败");
             e.printStackTrace();
-        }
+        }*/
+        userService.delectUser(id);
+        map.put("code",200);
+        map.put("msg","删除用户成功");
         return map;
     }
     //分页擦查询
