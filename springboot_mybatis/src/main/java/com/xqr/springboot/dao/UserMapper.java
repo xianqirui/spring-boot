@@ -10,4 +10,6 @@ public interface UserMapper {
     public User selectbyid(Integer userId);
     //添加用户，返回受影响的行数
     int addUser(User user);
+    //修改用户
+    int updateUser(User user);
 }

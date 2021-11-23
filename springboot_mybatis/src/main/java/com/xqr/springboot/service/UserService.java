@@ -42,4 +42,23 @@ public class UserService {
         AssertUtil.isTrue(userMapper.addUser(user)<1,"添加用户失败");
     }
 
+    //修改
+    public void updateUser(User user){
+        //判断用户id
+        AssertUtil.isTrue(user.getId()==null,"用户数据异常");
+        //非空判断
+        //StringUtils.isBlank(user.getUserName());
+        AssertUtil.isTrue(StringUtils.isBlank(user.getUserName()),"用户姓名不能为空");
+        //判断用户密码是否为空
+        AssertUtil.isTrue(StringUtils.isBlank(user.getUserPwd()),"用户密码不能为空");
+        //通过用户名查询用户
+        User temp=userMapper.selectUser(user.getUserName());
+        //通过用户名判断用户是否为空
+        AssertUtil.isTrue(temp!=null&&!user.getId().equals(temp.getId()),"用户已存在，请重试");
+        //int num=userMapper.addUser(user);
+        AssertUtil.isTrue(userMapper.updateUser(user)<1,"修改用户失败");
+
+
+    }
+
 }

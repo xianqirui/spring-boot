@@ -21,4 +21,7 @@
         values
             (#{userName},#{userPwd})
     </insert>
+    <update id="updateUser">
+        update tb_user set userName=#{userName},userpwd=#{userPwd} where id=#{id}
+    </update>
 </mapper>

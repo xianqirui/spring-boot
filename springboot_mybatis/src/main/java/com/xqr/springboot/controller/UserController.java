@@ -44,4 +44,23 @@ public class UserController {
     }
       return map;
     }
+    @PutMapping("user/update")
+    public Map<String,Object> updateuser(@RequestBody User user){
+        Map<String,Object> map=new HashMap<>();
+        try {
+            //调用service方法
+            userService.updateUser(user);
+            map.put("code",200);
+            map.put("msg","修改用户成功");
+        }catch (ParamsException p){
+            map.put("code",p.getCode());
+            map.put("msg",p.getMsg());
+            p.printStackTrace();
+        }catch (Exception e){
+            map.put("code",500);
+            map.put("msg","用户修改失败");
+            e.printStackTrace();
+        }
+        return map;
+    }
 }
