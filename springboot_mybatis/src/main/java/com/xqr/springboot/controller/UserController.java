@@ -1,7 +1,9 @@
 package com.xqr.springboot.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.xqr.springboot.exception.ParamsException;
 import com.xqr.springboot.po.User;
+import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,6 +84,11 @@ public class UserController {
             e.printStackTrace();
         }
         return map;
+    }
+    //分页擦查询
+    @RequestMapping("list")
+    public PageInfo<User> queryUserByname(UserQuery userQuery){
+        return userService.queryByName(userQuery);
     }
 
 }

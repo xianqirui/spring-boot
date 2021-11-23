@@ -1,6 +1,9 @@
 package com.xqr.springboot.dao;
 
 import com.xqr.springboot.po.User;
+import com.xqr.springboot.query.UserQuery;
+
+import java.util.List;
 
 public interface UserMapper {
 
@@ -14,4 +17,7 @@ public interface UserMapper {
     int updateUser(User user);
     //删除
     public int delectUser(Integer id);
+
+    //分页查询
+    List<User> queryUser(UserQuery userQuery);
 }

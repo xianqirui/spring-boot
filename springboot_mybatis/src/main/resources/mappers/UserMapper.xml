@@ -28,4 +28,13 @@
     <delete id="delectUser">
         delete from tb_user where id=#{id}
     </delete>
+    <!--条件查询-->
+    <select id="queryUser" resultType="com.xqr.springboot.po.User" parameterType="com.xqr.springboot.query.UserQuery">
+     select * from tb_user
+    <where>
+    <if test="null!=userName and ''!=userName">
+        and userName like concat('%',#{userName},'%')
+    </if>
+    </where>
+    </select>
 </mapper>

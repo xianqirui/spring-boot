@@ -1,12 +1,16 @@
 package com.xqr.springboot.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xqr.springboot.dao.UserMapper;
 import com.xqr.springboot.po.User;
+import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.util.AssertUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -64,5 +68,16 @@ public class UserService {
         AssertUtil.isTrue(id==null||userMapper.selectbyid(id)==null,"删除记录不存在");
         //执行删除
         AssertUtil.isTrue(userMapper.delectUser(id)<1,"删除失败");
+    }
+
+    //分页
+    public PageInfo<User> queryByName(UserQuery userQuery){
+        //开启分页
+        PageHelper.startPage(userQuery.getPageNum(),userQuery.getPageSize());
+        //查询
+        List<User> userList=userMapper.queryUser(userQuery);
+        //分页
+        PageInfo<User> pageInfo=new PageInfo<>(userList);
+        return pageInfo;
     }
 }
