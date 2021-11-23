@@ -1,21 +1,22 @@
 package com.xqr.springboot.exception;
 
-public class ParmsException extends RuntimeException {
+public class ParamsException extends RuntimeException {
+
     private Integer code=500;
     private String msg="参数异常";
 
-    public ParmsException() {
+    public ParamsException() {
         super("参数异常!");
     }
-    public ParmsException(String msg) {
+    public ParamsException(String msg) {
         super(msg);
         this.msg=msg;
     }
-    public ParmsException(Integer code) {
+    public ParamsException(Integer code) {
         super("参数异常!");
         this.code=code;
     }
-    public ParmsException(Integer code,String msg) {
+    public ParamsException(Integer code,String msg) {
         super(msg);
         this.code=code;
         this.msg=msg;

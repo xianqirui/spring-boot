@@ -1,10 +1,8 @@
 package com.xqr.springboot.controller;
 
-
-import com.xqr.springboot.exception.ParmsException;
+import com.xqr.springboot.exception.ParamsException;
 import com.xqr.springboot.po.User;
 import com.xqr.springboot.service.UserService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,16 +24,16 @@ public class UserController {
     public User findByid(@PathVariable Integer userId){
         return userService.findByid(userId);
     }
-
-    @PostMapping("user")
-    public Map<String,Object> addUser(@PathVariable User user){
+    //添加操作
+    @PostMapping("user/add")
+    public Map<String,Object> addUser(@RequestBody User user){
     Map<String,Object> map=new HashMap<>();
     try {
         //调用service方法
         userService.addUser(user);
         map.put("code",200);
         map.put("msg","添加用户成功");
-    }catch (ParmsException p){
+    }catch (ParamsException p){
         map.put("code",p.getCode());
         map.put("msg",p.getMsg());
         p.printStackTrace();

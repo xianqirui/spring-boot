@@ -1,13 +1,13 @@
 package com.xqr.springboot.util;
 
 
-import com.xqr.springboot.exception.ParmsException;
+import com.xqr.springboot.exception.ParamsException;
 
 public class AssertUtil {
 
     public static void isTrue(boolean flag,String msg){
         if (flag){
-            throw new ParmsException(msg);
+            throw new ParamsException(msg);
         }
     }
 }
