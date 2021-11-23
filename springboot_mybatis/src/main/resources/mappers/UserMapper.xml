@@ -8,4 +8,17 @@
         from tb_user
         where userName = #{userName}
     </select>
+
+    <select id="selectbyid" resultType="com.xqr.springboot.po.User" parameterType="int">
+        select *
+        from tb_user
+        where id = #{userId}
+    </select>
+
+    <insert id="addUser">
+        insert into
+            tb_user(userName,userPwd)
+        values
+            (#{userName},#{userPwd})
+    </insert>
 </mapper>
