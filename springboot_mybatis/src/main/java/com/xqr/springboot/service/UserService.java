@@ -8,6 +8,8 @@ import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.util.AssertUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,11 +21,13 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
     //查询用户对象
+    @Transactional(propagation = Propagation.REQUIRED)
     public User findUser(String userName){
         return userMapper.selectUser(userName);
     }
 
     //id查询
+    @Transactional(propagation = Propagation.REQUIRED)
     public User findByid(Integer userId){
         return userMapper.selectbyid(userId);
     }
@@ -31,6 +35,7 @@ public class UserService {
     //添加
     /*1.参数校验
     * */
+    @Transactional(propagation = Propagation.REQUIRED)
     public void addUser(User user){
         //非空判断
         //StringUtils.isBlank(user.getUserName());
@@ -47,6 +52,7 @@ public class UserService {
     }
 
     //修改
+    @Transactional(propagation = Propagation.REQUIRED)
     public void updateUser(User user){
         //判断用户id
         AssertUtil.isTrue(user.getId()==null,"用户数据异常");
@@ -62,7 +68,8 @@ public class UserService {
         //int num=userMapper.addUser(user);
         AssertUtil.isTrue(userMapper.updateUser(user)<1,"修改用户失败");
     }
-
+    //删除
+    @Transactional(propagation = Propagation.REQUIRED)
     public void delectUser(Integer id){
         //判断非空
         AssertUtil.isTrue(id==null||userMapper.selectbyid(id)==null,"删除记录不存在");
