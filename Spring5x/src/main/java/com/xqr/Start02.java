@@ -1,7 +1,7 @@
 package com.xqr;
 
 import com.xqr.config.IocConfig2;
-import com.xqr.dao.AccountDao;
+import com.xqr.test.dao.AccountDao;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Start02 {

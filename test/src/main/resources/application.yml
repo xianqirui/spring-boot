@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /test
+
+#数据源
+spring:
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf-8&&serverTimezone=GMT%2B8
+    username: xqr
+    password: x15282097256@
+  freemarker:
+    suffix: .ftl
+    charset: UTF-8
+    template-loader-path: classpath:/templates
+#mybatis设置
+mybatis:
+  #映射文件的存放路径
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.xqr.test.po
+  configuration:
+    #下划线转驼峰设置
+    map-underscore-to-camel-case: true
+
+##pageHelper
+pagehelper:
+  helper-dialect: mysql
+
+##显示dao 执行sql语句
+logging:
+  level:
+    com:
+      xqr:
+        springboot:
+          dao: debug

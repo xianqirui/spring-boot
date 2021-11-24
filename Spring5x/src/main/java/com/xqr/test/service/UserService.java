@@ -1,6 +1,6 @@
-package com.xqr.service;
+package com.xqr.test.service;
 
-import com.xqr.dao.UserDao;
+import com.xqr.test.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

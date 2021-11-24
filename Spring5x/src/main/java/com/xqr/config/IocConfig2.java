@@ -1,6 +1,6 @@
 package com.xqr.config;
 
-import com.xqr.dao.AccountDao;
+import com.xqr.test.dao.AccountDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

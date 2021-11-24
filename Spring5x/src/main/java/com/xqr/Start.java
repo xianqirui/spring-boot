@@ -1,7 +1,7 @@
 package com.xqr;
 
 import com.xqr.config.IocConfig;
-import com.xqr.service.UserService;
+import com.xqr.test.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Start {

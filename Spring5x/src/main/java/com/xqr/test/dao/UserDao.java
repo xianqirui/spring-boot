@@ -1,4 +1,4 @@
-package com.xqr.dao;
+package com.xqr.test.dao;
 
 import org.springframework.stereotype.Repository;
 
