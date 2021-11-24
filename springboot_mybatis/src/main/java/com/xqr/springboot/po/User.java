@@ -3,10 +3,13 @@ package com.xqr.springboot.po;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
+
 /*
 * 数据校验会抛出异常，被全局校验捕获
 * */
-public class User {
+//实现序列化
+public class User implements Serializable {
     private Integer id;
 
     @NotBlank(message = "用户姓名不能为空")

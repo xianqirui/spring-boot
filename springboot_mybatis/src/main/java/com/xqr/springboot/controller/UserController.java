@@ -5,6 +5,7 @@ import com.xqr.springboot.exception.ParamsException;
 import com.xqr.springboot.po.User;
 import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.service.UserService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class UserController {
     }
 
     @GetMapping("user/id/{userId}")
+    @Cacheable(value = "users",key = "#userId")
     public User findByid(@PathVariable Integer userId){
         return userService.findByid(userId);
     }
@@ -60,6 +62,7 @@ public class UserController {
         map.put("msg", "添加用户成功");
         return map;
     }
+    //修改
     @PutMapping("user/update")
     public Map<String,Object> updateuser(@RequestBody User user){
         Map<String,Object> map=new HashMap<>();
@@ -78,7 +81,8 @@ public class UserController {
         return map;
     }
     //分页擦查询
-    @RequestMapping("list")
+    @RequestMapping("user/list")
+    @Cacheable(value = "users",key = "#userQuery.pageNum+'-'+userQuery.pageSize")
     public PageInfo<User> queryUserByname(UserQuery userQuery){
         return userService.queryByName(userQuery);
     }
