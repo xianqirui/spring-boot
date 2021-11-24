@@ -3,7 +3,7 @@ package com.xqr.springboot.query;
 import java.io.Serializable;
 
 //分页
-public class UserQuery implements Serializable {
+public class UserQuery  {
     private Integer pageNum=1;//当前第几页
     private Integer pageSize=10;//每页显示记录数
     //条件参数

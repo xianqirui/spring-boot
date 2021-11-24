@@ -5,6 +5,8 @@ import com.xqr.springboot.exception.ParamsException;
 import com.xqr.springboot.po.User;
 import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.service.UserService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -71,8 +73,19 @@ public class UserController {
         map.put("msg","修改用户成功");
         return map;
     }
+    //chcache修改
+    /*
+    * 设置缓存但更新时，缓存与数据库同步
+    * */
+    @PutMapping("user/update02")
+    @CachePut(value = "users",key ="#user.id" )
+    public User updateuser02(@RequestBody User user){
+        userService.updateUser(user);
+        return user;
+    }
     //删除用户
     @DeleteMapping("user/delect/{id}")
+    @CacheEvict(value = "users",key = "#id")
     public Map<String,Object> delectuser(@PathVariable Integer id){
         Map<String,Object> map=new HashMap<>();
         userService.delectUser(id);
