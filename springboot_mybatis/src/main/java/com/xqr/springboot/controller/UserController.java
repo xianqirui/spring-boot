@@ -5,9 +5,11 @@ import com.xqr.springboot.exception.ParamsException;
 import com.xqr.springboot.po.User;
 import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.service.UserService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,23 +51,18 @@ public class UserController {
         map.put("msg","添加用户成功");
       return map;
     }
+    //添加校验
+    @PostMapping("user02")
+    public Map<String,Object> addUser02(@Valid User user) {
+        Map<String, Object> map = new HashMap<>();
+        userService.addUser(user);
+        map.put("code", 200);
+        map.put("msg", "添加用户成功");
+        return map;
+    }
     @PutMapping("user/update")
     public Map<String,Object> updateuser(@RequestBody User user){
         Map<String,Object> map=new HashMap<>();
-        /*try {
-            //调用service方法
-            userService.updateUser(user);
-            map.put("code",200);
-            map.put("msg","修改用户成功");
-        }catch (ParamsException p){
-            map.put("code",p.getCode());
-            map.put("msg",p.getMsg());
-            p.printStackTrace();
-        }catch (Exception e){
-            map.put("code",500);
-            map.put("msg","用户修改失败");
-            e.printStackTrace();
-        }*/
         userService.updateUser(user);
         map.put("code",200);
         map.put("msg","修改用户成功");
@@ -75,20 +72,6 @@ public class UserController {
     @DeleteMapping("user/delect/{id}")
     public Map<String,Object> delectuser(@PathVariable Integer id){
         Map<String,Object> map=new HashMap<>();
-        /*try {
-            //调用service方法
-            userService.delectUser(id);
-            map.put("code",200);
-            map.put("msg","删除用户成功");
-        }catch (ParamsException p){
-            map.put("code",p.getCode());
-            map.put("msg",p.getMsg());
-            p.printStackTrace();
-        }catch (Exception e){
-            map.put("code",500);
-            map.put("msg","用户删除失败");
-            e.printStackTrace();
-        }*/
         userService.delectUser(id);
         map.put("code",200);
         map.put("msg","删除用户成功");

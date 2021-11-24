@@ -1,6 +1,7 @@
 package com.xqr.springboot;
 
 import com.xqr.springboot.exception.ParamsException;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,15 @@ public class GlobaleExceptionHandlerResolver {
             map.put("code",p.getCode());
             map.put("msg",p.getMsg());
         }
+        return map;
+    }
+    //处理校验异常
+    @ExceptionHandler(value = BindException.class)
+    @ResponseBody
+    public Map<String,Object> excpetionHandler02(BindException b) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 500);
+        map.put("msg", b.getBindingResult().getFieldError().getDefaultMessage());
         return map;
     }
 }
