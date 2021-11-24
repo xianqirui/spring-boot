@@ -5,6 +5,9 @@ import com.xqr.springboot.exception.ParamsException;
 import com.xqr.springboot.po.User;
 import com.xqr.springboot.query.UserQuery;
 import com.xqr.springboot.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,26 +18,32 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
-
+@Api(tags = "用户控制模块")
 //@Controller //可以视图，可以json
 @RestController//返回json,可以不加@ResponseBody注解
 public class UserController {
     @Resource
     private UserService userService;
+    @ApiOperation(value = "根据用户名查询用户对象")
+    @ApiImplicitParam(name = "userName",value = "用户名")
     @GetMapping("user/name/{userName}")
     //@ResponseBody
     public User findUser(@PathVariable String userName){
         System.out.println("测试热部署-----------------------");
     return userService.findUser(userName);
     }
-
+    @ApiOperation(value = "根据用户id查询用户对象")
+    @ApiImplicitParam(name = "userId",value = "用户id")
     @GetMapping("user/id/{userId}")
     @Cacheable(value = "users",key = "#userId")
     public User findByid(@PathVariable Integer userId){
         return userService.findByid(userId);
     }
+
     //添加操作
     @PostMapping("user/add")
+    @ApiOperation(value = "使用json添加对象")
+    @ApiImplicitParam(name = "user",value = "用户对象")
     public Map<String,Object> addUser(@RequestBody User user){
     Map<String,Object> map=new HashMap<>();
     /*try {
@@ -58,6 +67,8 @@ public class UserController {
     }
     //添加校验
     @PostMapping("user02")
+    @ApiOperation(value = "添加校验")
+    @ApiImplicitParam(name = "user",value = "用户对象")
     public Map<String,Object> addUser02(@Valid User user) {
         Map<String, Object> map = new HashMap<>();
         userService.addUser(user);
@@ -67,6 +78,8 @@ public class UserController {
     }
     //修改
     @PutMapping("user/update")
+    @ApiOperation(value = "修改对象")
+    @ApiImplicitParam(name = "user",value = "用户对象")
     public Map<String,Object> updateuser(@RequestBody User user){
         Map<String,Object> map=new HashMap<>();
         userService.updateUser(user);
@@ -80,6 +93,8 @@ public class UserController {
     * */
     @PutMapping("user/update02")
     @CachePut(value = "users",key ="#user.id" )
+    @ApiOperation(value = "cache修改对象")
+    @ApiImplicitParam(name = "user",value = "用户对象")
     public User updateuser02(@RequestBody User user){
         userService.updateUser(user);
         return user;
@@ -87,6 +102,8 @@ public class UserController {
     //删除用户
     @DeleteMapping("user/delect/{id}")
     @CacheEvict(value = "users",key = "#id")
+    @ApiOperation(value = "删除对象")
+    @ApiImplicitParam(name = "id",value = "用户id")
     public Map<String,Object> delectuser(@PathVariable Integer id){
         Map<String,Object> map=new HashMap<>();
         userService.delectUser(id);
@@ -97,6 +114,8 @@ public class UserController {
     //分页擦查询
     @RequestMapping("user/list")
     @Cacheable(value = "users",key = "#userQuery.pageNum+'-'+userQuery.pageSize")
+    @ApiOperation(value = "分页查询对象")
+    @ApiImplicitParam(name = "userQuery",value = "分页用户对象")
     public PageInfo<User> queryUserByname(UserQuery userQuery){
         return userService.queryByName(userQuery);
     }
