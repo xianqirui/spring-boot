@@ -26,17 +26,18 @@ public class UserController {
     private UserService userService;
     @ApiOperation(value = "根据用户名查询用户对象")
     @ApiImplicitParam(name = "userName",value = "用户名")
-    @GetMapping("user/name/{userName}")
+    @GetMapping("user/name")
     //@ResponseBody
-    public User findUser(@PathVariable String userName){
+    public User findUser(@Valid String userName){
         System.out.println("测试热部署-----------------------");
     return userService.findUser(userName);
     }
+    //
     @ApiOperation(value = "根据用户id查询用户对象")
     @ApiImplicitParam(name = "userId",value = "用户id")
-    @GetMapping("user/id/{userId}")
+    @GetMapping("user/id")
     @Cacheable(value = "users",key = "#userId")
-    public User findByid(@PathVariable Integer userId){
+    public User findByid(@Valid Integer userId){
         return userService.findByid(userId);
     }
 
@@ -66,6 +67,7 @@ public class UserController {
       return map;
     }
     //添加校验
+    /*参数校验需要在校验的参数前添加@Valid注解*/
     @PostMapping("user02")
     @ApiOperation(value = "添加校验")
     @ApiImplicitParam(name = "user",value = "用户对象")
@@ -80,7 +82,7 @@ public class UserController {
     @PutMapping("user/update")
     @ApiOperation(value = "修改对象")
     @ApiImplicitParam(name = "user",value = "用户对象")
-    public Map<String,Object> updateuser(@RequestBody User user){
+    public Map<String,Object> updateuser(@Valid User user){
         Map<String,Object> map=new HashMap<>();
         userService.updateUser(user);
         map.put("code",200);
@@ -112,8 +114,8 @@ public class UserController {
         return map;
     }
     //分页擦查询
-    @RequestMapping("user/list")
-    @Cacheable(value = "users",key = "#userQuery.pageNum+'-'+userQuery.pageSize")
+    @GetMapping("list")
+    @Cacheable(value = "users",key = "#userQuery.userName+'-'+#userQuery.pageNum+'-'+userQuery.pageSize")
     @ApiOperation(value = "分页查询对象")
     @ApiImplicitParam(name = "userQuery",value = "分页用户对象")
     public PageInfo<User> queryUserByname(UserQuery userQuery){

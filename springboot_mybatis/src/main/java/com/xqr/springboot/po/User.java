@@ -14,6 +14,7 @@ import java.io.Serializable;
 @ApiModel(value = "用户实体类")
 public class User implements Serializable {
     @ApiModelProperty(value = "用户id",example = "默认0")
+    @NotBlank(message = "id不能为空")
     private Integer id;
 
     @ApiModelProperty(value = "用户姓名",example = "默认")

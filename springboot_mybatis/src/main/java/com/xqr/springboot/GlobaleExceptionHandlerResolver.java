@@ -18,12 +18,20 @@ public class GlobaleExceptionHandlerResolver {
         Map<String,Object> map=new HashMap<>();
         map.put("code",500);
         map.put("msg","系统异常请重试");
-        //指定异常
+       /* //指定异常
         if(e instanceof ParamsException){
             ParamsException p=(ParamsException)e ;
             map.put("code",p.getCode());
             map.put("msg",p.getMsg());
-        }
+        }*/
+        return map;
+    }
+    @ExceptionHandler(value =ParamsException.class)
+    @ResponseBody
+    public Map<String,Object> excpetion02(ParamsException p){
+        Map<String,Object> map=new HashMap<>();
+        map.put("code",p.getCode());
+        map.put("msg",p.getMsg());
         return map;
     }
     //处理校验异常
