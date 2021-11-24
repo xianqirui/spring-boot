@@ -15,6 +15,15 @@ spring:
   cache:
     ehcache:
       config: classpath:ehcache.xml
+  #热部署
+  devtools:
+    restart:
+      enabled: true
+      #设置重启目录
+      additional-paths: src/main/java
+      #解决重启报404
+      poll-interval: 3000
+      quiet-period: 1000
 
 #mybatis设置
 mybatis:

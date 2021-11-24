@@ -24,6 +24,7 @@ public class UserController {
     @GetMapping("user/name/{userName}")
     //@ResponseBody
     public User findUser(@PathVariable String userName){
+        System.out.println("测试热部署-----------------------");
     return userService.findUser(userName);
     }
 
